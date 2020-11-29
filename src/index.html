@@ -36,7 +36,6 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
   </head>
   <body class="c-app">
     <div class="c-wrapper c-fixed-components">
@@ -59,7 +58,12 @@
                       </p>
                     </div>
                   </div>
-                  <div class="row align-items-center mt-3">
+                  <div id="irma-web-form">
+
+
+                    <button class="btn btn-lg btn-ghost-info" id="issue-irma" type="button">Kaartje toevoegen</button>
+                  </div>
+                  <div class="row align-items-center mt-3" id="irma-buttons">
                       <div class="col-4 col-xs-0 col-sm-1 col-md-2 col-lg-2 col-xl-3 text-center p-3">
                       </div>
                       <div class="col-2 col-xs-12 col-sm-5 col-md-4 col-lg-4 col-xl-3 text-center p-3">
@@ -68,7 +72,7 @@
                     </div>
                     <div class="col-2 col-xs-12 col-sm-5 col-md-4 col-lg-4 col-xl-3 text-center p-3">
                           <img src="assets/irma.png" alt="irma" style="width: 60px;" />
-                          <button class="btn btn-lg btn-ghost-info" type="button">Login met IRMA</button>
+                          <button class="btn btn-lg btn-ghost-info" type="button" id="login-with-irma">Login met IRMA</button>
                     </div>
                     <div class="col-4 col-xs-0 col-sm-1 col-md-2 col-lg-2 col-xl-3  text-center p-3">
                     </div>
@@ -98,6 +102,7 @@
     <!--<![endif]-->
     <!-- Plugins and scripts required by this view-->
     <script src="node_modules/@coreui/utils/dist/coreui-utils.js"></script>
+    <script type="text/javascript" src="assets/irma.js"></script>
     <script src="js/index.js"></script>
   </body>
 </html>
