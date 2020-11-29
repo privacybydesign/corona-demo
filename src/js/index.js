@@ -1,7 +1,7 @@
 'use strict';
 
 const IRMA_SERVER = 'https://demo.irma.dev';
-const IRMA_TOKEN = 'YTDhIvGdE4vZyDVQ0FKRRNJ3MFnOUJ';
+const IRMA_TOKEN = 'ZiHnhN0yPuop3YjQCf8BTHhekaaimy';
 
 let options = {
   // Developer options
