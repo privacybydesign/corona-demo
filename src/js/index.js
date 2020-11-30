@@ -1,6 +1,6 @@
 'use strict';
 
-const IRMA_SERVER = 'https://demo.irma.dev';
+const IRMA_SERVER = 'https://demo.irma.dev/backend';
 const IRMA_TOKEN = 'ZiHnhN0yPuop3YjQCf8BTHhekaaimy';
 
 let options = {
@@ -23,18 +23,17 @@ let options = {
   start: {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json',
-    //'Authorization': IRMA_TOKEN
+    'Content-Type': 'application/json'
     },
     body: JSON.stringify({
     "@context": "https://irma.app/ld/request/disclosure/v2",
     "disclose": [
       [
       [
-        "irma-demo.gemeente.persoonalData.bsn",
-        "irma-demo.gemeente.persoonalData.firstenames",
-        "irma-demo.gemeente.persoonalData.familyname",
-        "irma-demo.gemeente.persoonalData.dateofbirth",
+        "irma-demo.gemeente.personalData.bsn",
+        "irma-demo.gemeente.personalData.firstnames",
+        "irma-demo.gemeente.personalData.familyname",
+        "irma-demo.gemeente.personalData.dateofbirth"
       ]
       ]
     ]
@@ -54,8 +53,11 @@ document.getElementById('login-with-irma').onclick = () => {
     } else {
       let testresult = Boolean(Math.round(Math.random()));
       console.log('Your test result is: ' + testresult);
-      // Show age notification if user is <18
-      document.getElementById('irma-buttons').style.display = 'hidden';
+      let bsn = result.disclosed[0][0].rawvalue.toLowerCase();
+      let firstname = result.disclosed[0][1].rawvalue.toLowerCase();
+      let lastname = result.disclosed[0][2].rawvalue.toLowerCase();
+      let dateofbirth = result.disclosed[0][3].rawvalue.toLowerCase();
+      document.getElementById('irma-buttons').style.display = 'none';
       document.getElementById('irma-web-form').style.display = 'block';
     }
   })
@@ -68,3 +70,6 @@ document.getElementById('login-with-irma').onclick = () => {
   })
   .finally(() => irmaPopup = irma.newPopup(options));
 };
+document.getElementById('login-with-digid').onclick = () => {
+  window.location.replace("https://services-test.nijmegen.nl/testuitslag/ophalen");
+}
