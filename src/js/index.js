@@ -112,6 +112,7 @@ document.getElementById('issue-irma').onclick = () => {
    .then(() => {
      console.log("Issuance successful");
      document.getElementById('irma-web-form').innerHTML = "<p>Bedankt voor het toevoegen van het kaartje</p>"
+     document.getElementById('issue-irma').style.display = "none";
    })
    .catch(error => console.error("Issuance failed: ", error));
 }
