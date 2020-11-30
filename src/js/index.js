@@ -42,24 +42,26 @@ let options = {
   }
 };
 
+let testresult = Boolean(Math.round(Math.random()));
+let bsn = '';
+let firstname = '';
+let lastname = '';
+let dateofbirth = '';
+
 let irmaPopup = irma.newPopup(options);
 document.getElementById('login-with-irma').onclick = () => {
   irmaPopup.start()
   .then(result => {
     console.log("Successful disclosure! 🎉", result)
-    // Continue to main page if user is 18+
-    if (result.disclosed[0][0].rawvalue.toLowerCase() === 'yes') {
-      window.location.href = 'index.html';
-    } else {
-      let testresult = Boolean(Math.round(Math.random()));
+      let testresult_text = testresult ? 'negatief': 'positief';
       console.log('Your test result is: ' + testresult);
-      let bsn = result.disclosed[0][0].rawvalue.toLowerCase();
-      let firstname = result.disclosed[0][1].rawvalue.toLowerCase();
-      let lastname = result.disclosed[0][2].rawvalue.toLowerCase();
-      let dateofbirth = result.disclosed[0][3].rawvalue.toLowerCase();
+      bsn = result.disclosed[0][0].rawvalue.toLowerCase();
+      firstname = result.disclosed[0][1].rawvalue.toLowerCase();
+      lastname = result.disclosed[0][2].rawvalue.toLowerCase();
+      dateofbirth = result.disclosed[0][3].rawvalue.toLowerCase();
       document.getElementById('irma-buttons').style.display = 'none';
       document.getElementById('irma-web-form').style.display = 'block';
-    }
+      document.getElementById('irma-web-form-data').innerHTML = '<p>Hoi ' + firstname + ', het resultaat van jouw test is ' + testresult_text + '. Wil je dat in een kaartje in IRMA bewaren?</p>'
   })
   .catch(error => {
     if (error === 'Aborted') {
@@ -72,4 +74,44 @@ document.getElementById('login-with-irma').onclick = () => {
 };
 document.getElementById('login-with-digid').onclick = () => {
   window.location.replace("https://services-test.nijmegen.nl/testuitslag/ophalen");
+}
+
+document.getElementById('issue-irma').onclick = () => {
+  let date = new Date();
+  // Issue, by showing a popup.
+   const request = {
+     '@context': 'https://irma.app/ld/request/issuance/v2',
+     "credentials": [
+      {
+        "credential": "irma-demo.ggd.coronatest",
+        "attributes": {
+          "date": "30-11-2020",
+          "dateofbirth": dateofbirth,
+          "familyname": lastname,
+          "firstnames": firstname,
+          "kind": "PCR",
+          "negativetestresult": testresult?'yes':'no',
+          "performer": "GGD delfland"
+        }
+      }
+    ]
+   };
+   console.log('issuing test attributes:', request);
+
+   irma.newPopup({
+     session: {
+       url: IRMA_SERVER,
+       start: {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(request),
+       }
+     },
+   })
+   .start()
+   .then(() => {
+     console.log("Issuance successful");
+     document.getElementById('irma-web-form').innerHTML = "<p>Bedankt voor het toevoegen van het kaartje</p>"
+   })
+   .catch(error => console.error("Issuance failed: ", error));
 }
