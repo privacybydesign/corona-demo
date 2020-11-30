@@ -61,7 +61,7 @@ document.getElementById('login-with-irma').onclick = () => {
       dateofbirth = result.disclosed[0][3].rawvalue;
       document.getElementById('irma-buttons').style = 'display: none !important';
       document.getElementById('irma-web-form').style.display = 'block';
-      document.getElementById('irma-web-form-data').innerHTML = '<p>Hoi ' + firstname + ', het resultaat van jouw test is ' + testresult_text + '. Wil je dat in een kaartje in IRMA bewaren?</p>'
+      document.getElementById('irma-web-form-data').innerHTML = 'Hoi ' + firstname + ', jouw testuitslag is <strong>' + testresult_text + '</strong>. Klik hieronder om dat in een kaartje toe te voegen in je IRMA app.'
   })
   .catch(error => {
     if (error === 'Aborted') {
@@ -111,7 +111,7 @@ document.getElementById('issue-irma').onclick = () => {
    .start()
    .then(() => {
      console.log("Issuance successful");
-     document.getElementById('irma-web-form').innerHTML = "<p>Bedankt voor het toevoegen van het kaartje</p>"
+     document.getElementById('irma-web-form-data').innerHTML = "Kaartje is toegevoegd."
      document.getElementById('issue-irma').style.display = "none";
    })
    .catch(error => console.error("Issuance failed: ", error));
