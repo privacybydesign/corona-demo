@@ -55,10 +55,10 @@ document.getElementById('login-with-irma').onclick = () => {
     console.log("Successful disclosure! 🎉", result)
       let testresult_text = testresult ? 'negatief': 'positief';
       console.log('Your test result is: ' + testresult);
-      bsn = result.disclosed[0][0].rawvalue.toLowerCase();
-      firstname = result.disclosed[0][1].rawvalue.toLowerCase();
-      lastname = result.disclosed[0][2].rawvalue.toLowerCase();
-      dateofbirth = result.disclosed[0][3].rawvalue.toLowerCase();
+      bsn = result.disclosed[0][0].rawvalue;
+      firstname = result.disclosed[0][1].rawvalue;
+      lastname = result.disclosed[0][2].rawvalue;
+      dateofbirth = result.disclosed[0][3].rawvalue;
       document.getElementById('irma-buttons').style = 'display: none !important';
       document.getElementById('irma-web-form').style.display = 'block';
       document.getElementById('irma-web-form-data').innerHTML = '<p>Hoi ' + firstname + ', het resultaat van jouw test is ' + testresult_text + '. Wil je dat in een kaartje in IRMA bewaren?</p>'
