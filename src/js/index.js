@@ -59,7 +59,7 @@ document.getElementById('login-with-irma').onclick = () => {
       firstname = result.disclosed[0][1].rawvalue.toLowerCase();
       lastname = result.disclosed[0][2].rawvalue.toLowerCase();
       dateofbirth = result.disclosed[0][3].rawvalue.toLowerCase();
-      document.getElementById('irma-buttons').style.display = 'none';
+      document.getElementById('irma-buttons').style = 'display: none !important';
       document.getElementById('irma-web-form').style.display = 'block';
       document.getElementById('irma-web-form-data').innerHTML = '<p>Hoi ' + firstname + ', het resultaat van jouw test is ' + testresult_text + '. Wil je dat in een kaartje in IRMA bewaren?</p>'
   })
