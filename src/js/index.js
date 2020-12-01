@@ -57,7 +57,7 @@ document.getElementById('login-with-irma').onclick = () => {
       dateofbirth = result.disclosed[0][3].rawvalue;
       document.getElementById('irma-buttons').style = 'display: none !important';
       document.getElementById('irma-web-form').style.display = 'block';
-      document.getElementById('irma-web-form-data').innerHTML = 'Dag ' + firstname + ', uw testuitslag is <strong>' + testresult_text + '</strong>. Klik hieronder om die uitslag in een kaartje toe te voegen in uw IRMA app.'
+      document.getElementById('irma-web-form-data').innerHTML = 'Hoi ' + firstname + ', uw testuitslag is <strong>' + testresult_text + '</strong>. Voeg deze testuitslag toe aan IRMA.'
   })
   .catch(error => {
     if (error === 'Aborted') {
