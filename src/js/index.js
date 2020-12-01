@@ -8,11 +8,7 @@ let options = {
   debugging: true,
 
   // Front-end options
-  language: 'en',
-  translations: {
-  header: 'Proceed with IRMA <i class="irma-web-logo">IRMA</i>',
-  loading: 'Just one second please!'
-  },
+  language: 'nl',
 
   // Back-end options
   session: {
