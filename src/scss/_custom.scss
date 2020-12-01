@@ -6,3 +6,60 @@
 .container-fluid {
   max-width: 800px;
 }
+
+/* DEMO ribbon from https://www.cssportal.com/css-ribbon-generator/ */
+
+
+.ribbon {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+  text-align: right;
+}
+
+.ribbon span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 40px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 300px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#004C92 0%, #004C92 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 50px;
+  right: -80px;
+}
+
+.ribbon span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid #004C92;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #004C92;
+}
+
+.ribbon span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #004C92;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #004C92;
+}
