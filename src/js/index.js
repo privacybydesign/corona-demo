@@ -81,7 +81,7 @@ document.getElementById('issue-irma').onclick = () => {
       {
         "credential": "irma-demo.ggd.coronatest",
         "attributes": {
-          "date": "30-11-2020",
+          "date": date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear(),
           "dateofbirth": dateofbirth,
           "familyname": lastname,
           "firstnames": firstname,
