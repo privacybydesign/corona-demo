@@ -87,7 +87,7 @@ document.getElementById('issue-irma').onclick = () => {
           "firstnames": firstname,
           "kind": "PCR",
           "negativetestresult": testresult?'yes':'no',
-          "performer": "GGD delfland"
+          "performer": "Demo testuitvoerder"
         }
       }
     ]
