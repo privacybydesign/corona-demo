@@ -39,6 +39,7 @@ let options = {
 };
 
 let testresult = Boolean(Math.round(Math.random()));
+let testresult_text = testresult ?  'Positief - coronabesmetting' : 'Negatief - geen coronabesmetting';
 let bsn = '';
 let firstname = '';
 let lastname = '';
@@ -49,7 +50,6 @@ document.getElementById('login-with-irma').onclick = () => {
   irmaPopup.start()
   .then(result => {
     console.log("Successful disclosure! 🎉", result)
-      let testresult_text = testresult ? 'negatief': 'positief';
       console.log('Your test result is: ' + testresult);
       bsn = result.disclosed[0][0].rawvalue;
       firstname = result.disclosed[0][1].rawvalue;
@@ -57,7 +57,7 @@ document.getElementById('login-with-irma').onclick = () => {
       dateofbirth = result.disclosed[0][3].rawvalue;
       document.getElementById('irma-buttons').style = 'display: none !important';
       document.getElementById('irma-web-form').style.display = 'block';
-      document.getElementById('irma-web-form-data').innerHTML = 'Hoi ' + firstname + ', uw testuitslag is <strong>' + testresult_text + '</strong>. Voeg deze testuitslag toe aan IRMA.'
+      document.getElementById('irma-web-form-data').innerHTML = 'Hoi ' + firstname + ', uw testuitslag is <strong>' + testresult_text.toLowerCase() + '</strong>. Voeg deze testuitslag toe aan IRMA.'
   })
   .catch(error => {
     if (error === 'Aborted') {
@@ -86,7 +86,7 @@ document.getElementById('issue-irma').onclick = () => {
           "familyname": lastname,
           "firstnames": firstname,
           "kind": "PCR",
-          "negativetestresult": testresult?'yes':'no',
+          "testresult": testresult_text,
           "performer": "Demo testuitvoerder"
         }
       }
