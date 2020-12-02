@@ -38,7 +38,7 @@ let options = {
   }
 };
 
-let testresult = Boolean(Math.round(Math.random()));
+let testresult = document.getElementById("positive-testresult").checked;
 let testresult_text = testresult ?  'Positief - coronabesmetting' : 'Negatief - geen coronabesmetting';
 let bsn = '';
 let firstname = '';
