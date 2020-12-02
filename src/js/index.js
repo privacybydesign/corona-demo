@@ -38,8 +38,8 @@ let options = {
   }
 };
 
-let testresult = document.getElementById("positive-testresult").checked;
-let testresult_text = testresult ?  'Positief - coronabesmetting' : 'Negatief - geen coronabesmetting';
+let testresult;
+let testresult_text;
 let bsn = '';
 let firstname = '';
 let lastname = '';
@@ -49,7 +49,9 @@ let irmaPopup = irma.newPopup(options);
 document.getElementById('login-with-irma').onclick = () => {
   irmaPopup.start()
   .then(result => {
-    console.log("Successful disclosure! 🎉", result)
+      console.log("Successful disclosure! 🎉", result)
+      testresult = document.getElementById("positive-testresult").checked;
+      testresult_text = testresult ?  'Positief - coronabesmetting' : 'Negatief - geen coronabesmetting';
       console.log('Your test result is: ' + testresult);
       bsn = result.disclosed[0][0].rawvalue;
       firstname = result.disclosed[0][1].rawvalue;
